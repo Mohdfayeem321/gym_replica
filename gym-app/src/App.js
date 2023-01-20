@@ -1,19 +1,30 @@
 import React from "react";
-import {createBrowserRouter,RouterProvider}from"react-router-dom"
+import {createBrowserRouter,Outlet,RouterProvider}from"react-router-dom"
 import NavBar from "./pages/NavBar"
+import Home from "./pages/Home";
 
-const router=createBrowserRouter([
-  {
-    path:"/",
-    element:<NavBar></NavBar>
+function Layout() {
+  return (
+    <>
+      <NavBar/>
+      <Outlet/>
+    </>
+  );
+}
+
+const router = createBrowserRouter([
+  { path: "/",
+   element : <Layout/>,
+        children: [{
+          path: "/", element: <Home />},]
   }
 ])
+
 function App() {
   return (
-  
-    <RouterProvider router={router}>
-
-    </RouterProvider>
+    <>
+    <RouterProvider router={router}/>
+    </>
   );
 }
 
